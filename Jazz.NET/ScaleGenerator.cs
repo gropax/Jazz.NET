@@ -26,7 +26,7 @@ namespace Jazz.NET
             var chromas = Intervals.Select(i => chroma.Transpose(i)).ToArray();
             var chromaSet = new ChromaSet(chromas);
             var scale = new Scale(chromaSet, Type, chroma);
-            var modes = chromas.Select((c, i) => new Mode(chromaSet, scale, i + 1, c)).ToArray();
+            var modes = chromas.Select((c, i) => new Mode(chromaSet.Rooted(c), scale, i + 1)).ToArray();
             scale.Modes = modes.ToArray();
             return scale;
         }
